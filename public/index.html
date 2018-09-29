@@ -7,10 +7,15 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" />
     <title>Edrans</title>
     <script src="js/angular.min.js"></script>
+    <script src="js/jquery-3.3.1.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
     <script src="controllers/main.js"></script>
+    <script src="controllers/menu.js"></script>
+    <script src="directives/directives.js"></script>
 </head>
 <body ng-controller="mainCtrl">
     <div class="container">
+        <main-Menu></main-Menu>
         <form name="myForm" novalidate>
             <h3>Ingresar alumno</h3>
             {{mainCtrl.students}}
