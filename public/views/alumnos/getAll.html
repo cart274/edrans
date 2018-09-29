@@ -1,0 +1,20 @@
+<div ng-controller="alumnosCtrl">
+    <div class="form-group">
+        <label for="nombre">Buscar</label>
+        <input type="text" class="form-control" placeholder="Nombre de alumno" ng-model="searchAlumnos">
+    </div>
+    <table class="table">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Nombre</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="alumno in alumnosCtrl.alumnos | filter:searchAlumnos">
+                <td>{{$index}}</td>
+                <td>{{alumno.Name}}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>

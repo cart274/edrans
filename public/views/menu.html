@@ -1,11 +1,11 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark" ng-controller="menuCtrl">
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark" ng-controller="mainCtrl">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-            <li class="nav-item active" ng-repeat="menu in mainMenu">
+            <li ng-class="$index == 0 ? 'active' : ''" class="nav-item" ng-repeat="menu in mainMenu">
                 <a class="nav-link" href="{{menu.url}}">{{menu.Name}} <span class="sr-only">(current)</span></a>
             </li>
         </ul>
