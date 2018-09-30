@@ -1,7 +1,7 @@
 const express = require('express'),
 app = express(),
 bodyParser = require('body-parser');
-students = require('./modules/students/router.js');
+alumnos = require('./modules/alumnos/router.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':true}));
@@ -12,5 +12,5 @@ app.get('/',(req,res,next)=>{
 	res.sendFile('./public/index.html');
 });
 
-app.use('/students', students);
+app.use('/alumnos', alumnos);
 app.listen(8080);

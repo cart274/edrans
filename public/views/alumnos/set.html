@@ -6,21 +6,21 @@
         <form name="myForm" novalidate>
             <div class="form-group">
                 <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" placeholder="Nombre de alumno" ng-model="alumnoDetail.Name" required>
+                <input type="text" class="form-control" placeholder="Nombre de alumno" ng-model="alumnoDetail.nombre" required>
             </div>
             <div class="form-group">
                 <label for="nombre">Fecha de nacimiento</label>
-                <input type="text" class="form-control" placeholder="Fecha de nacimiento" ng-model="alumnoDetail.birthdate" required>
+                <input type="date" class="form-control" placeholder="Fecha de nacimiento" ng-model="alumnoDetail.fNacimiento" required>
             </div>
             <div class="form-group">
                 <label for="nombre">Domicilio</label>
-                <input type="text" class="form-control" placeholder="Domicilio" ng-model="alumnoDetail.address" required>
+                <input type="text" class="form-control" placeholder="Domicilio" ng-model="alumnoDetail.domicilio" required>
             </div>
         </form>
     </div>
 </div>
 <div class="modal-footer">
 	<button class="btn btn-primary" ng-click="save()" ng-show="myForm.$valid" translate>Guardar</button>
-	<button class="btn btn-danger" ng-click="delete()" ng-show="alumno" translate>Borrar</button>
+	<button class="btn btn-danger" ng-click="delete()" ng-show="alumnoDetail._id" translate>Borrar</button>
 	<button class="btn btn-warning" ng-click="cancel()" translate>Cancelar</button>
 </div>

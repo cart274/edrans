@@ -15,7 +15,7 @@
         <tbody>
             <tr ng-repeat="alumno in alumnos | filter:searchAlumnos"  ng-click="alumnosDetails(alumno)">
                 <td>{{$index}}</td>
-                <td>{{alumno.Name}}</td>
+                <td>{{alumno.nombre}}</td>
             </tr>
         </tbody>
     </table>
