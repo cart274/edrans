@@ -1,36 +1,34 @@
 mongoose = require("mongoose");
-var Schema = mongoose.Schema;
-mongoose.connect("mongodb://localhost/alumnos");
+let Schema = mongoose.Schema;
+mongoose.connect("mongodb://localhost/carreras");
 
-var alumnosSchemaJSON = {
-    nombre:String,
-    fNacimiento:Date,
-    domicilio:String
+let carrerasSchemaJSON = {
+    nombre:String
 };
 
-var alumnos_schema = new Schema(alumnosSchemaJSON);
-var Alumnos = mongoose.model("Alumnos",alumnos_schema);
+let carreras_schema = new Schema(carrerasSchemaJSON);
+let Carreras = mongoose.model("Carreras",carreras_schema);
 
-exports.getAlumnos = function(cb){
-    Alumnos.find(function(error,data){
+exports.getCarreras = function(cb){
+    Carreras.find(function(error,data){
         cb(error,data)
     });
 }
 
-exports.setAlumnos = function(data, cb){
-    var alumnos = new Alumnos({'nombre':data.nombre, 'fNacimiento':data.fNacimiento,
+exports.setCarrera = function(data, cb){
+    let carreras = new Carreras({'nombre':data.nombre, 'fNacimiento':data.fNacimiento,
         'domicilio':data.domicilio});
-    alumnos.save(cb);
+    carreras.save(cb);
 }
 
-exports.deleteAlumno = function(data, cb){
-    Alumnos.deleteOne({'_id':data._id},function(error){
+exports.deleteCarrera = function(data, cb){
+    Carreras.deleteOne({'_id':data._id},function(error){
         cb(error);
     })
 }
 
-exports.updateAlumno = function(data, cb){
-    Alumnos.updateOne({'_id':data._id},{'nombre':data.nombre, 'fNacimiento':data.fNacimiento,
+exports.updateCarrera = function(data, cb){
+    Carreras.updateOne({'_id':data._id},{'nombre':data.nombre, 'fNacimiento':data.fNacimiento,
     'domicilio':data.domicilio},function(error){
         cb(error);
     })

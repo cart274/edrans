@@ -1,6 +1,6 @@
 const express = require('express'),
-router = express.Router(),
-controller = require('./controller');
+router = express.Router();
+let controller = require('./controller');
 
 router.get('/getAlumnos',(req,res,next)=>{
 	controller.getAlumnos(function(error,data){

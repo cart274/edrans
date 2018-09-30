@@ -1,26 +1,27 @@
-app.controller('CarrerasCtrl', function($scope,$uibModal) {
-    $scope.Carreras = [];
+app.controller('carrerasCtrl', function($scope,$uibModal) {
+    $scope.carreras = [];
     
     var getCarreras = function(){
-        fetch('http://localhost:8080/Carreras/getCarreras', {
+        fetch('http://localhost:8080/carreras/getCarreras', {
             method: 'GET'
             }).then(res => res.json())
-            .then(res => {$scope.Carreras = res;
+            .then(res => {$scope.carreras = res;
+                console.log(res);
                 $scope.$apply(); });
     }
     getCarreras();
 
-    $scope.CarrerasDetails = function (Carrera){
+    $scope.carrerasDetails = function (carrera){
         var modalInstance = $uibModal.open({
             animation: false,
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
-            templateUrl: 'views/Carreras/set.html',
-            controller: 'CarrerasDetailsCtrl',
+            templateUrl: 'views/carreras/set.html',
+            controller: 'carrerasDetailsCtrl',
             size: 'lg',
             resolve: {
-                Carrera: function () {
-                    return Carrera;
+                carrera: function () {
+                    return carrera;
               }
             }
           });
@@ -32,19 +33,17 @@ app.controller('CarrerasCtrl', function($scope,$uibModal) {
 
 });
 
-app.controller('CarrerasDetailsCtrl', function($scope, $uibModalInstance, Carrera) {
-    $scope.CarreraDetail = {};
-    if(Carrera){
-        var newDate = new Date(Carrera.fNacimiento);
-        $scope.CarreraDetail = {'nombre':Carrera.nombre,'domicilio':Carrera.domicilio,
-        'fNacimiento':newDate,'_id':Carrera._id};
+app.controller('carrerasDetailsCtrl', function($scope, $uibModalInstance, carrera) {
+    $scope.carreraDetail = {};
+    if(carrera){
+        $scope.carreraDetail = {'nombre':carrera.nombre,'_id':carrera._id};
     }
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
 
     $scope.save = function () {
-        if($scope.CarreraDetail._id){
+        if($scope.carreraDetail._id){
             updateCarrera();
         }
         else{
@@ -53,8 +52,9 @@ app.controller('CarrerasDetailsCtrl', function($scope, $uibModalInstance, Carrer
     }
 
     var saveNew = function(){
-        data = $scope.CarreraDetail ;
-        fetch('http://localhost:8080/Carreras/setCarrera', {
+        data = $scope.carreraDetail;
+        console.log(data);
+        fetch('http://localhost:8080/carreras/setCarrera', {
                 method: 'POST',
                 body: JSON.stringify(data), 
                 headers:{
@@ -72,8 +72,8 @@ app.controller('CarrerasDetailsCtrl', function($scope, $uibModalInstance, Carrer
     }
 
     var updateCarrera = function(){
-        data = $scope.CarreraDetail ;
-        fetch('http://localhost:8080/Carreras/updateCarrera', {
+        data = $scope.carreraDetail ;
+        fetch('http://localhost:8080/carreras/updateCarrera', {
                 method: 'PUT',
                 body: JSON.stringify(data), 
                 headers:{
@@ -91,8 +91,8 @@ app.controller('CarrerasDetailsCtrl', function($scope, $uibModalInstance, Carrer
     }
 
     $scope.delete = function(){
-        let data = {'_id':$scope.CarreraDetail._id};
-        fetch('http://localhost:8080/Carreras/deleteCarrera', {
+        let data = {'_id':$scope.carreraDetail._id};
+        fetch('http://localhost:8080/carreras/deleteCarrera', {
                 method: 'DELETE',
                 body: JSON.stringify(data), 
                 headers:{

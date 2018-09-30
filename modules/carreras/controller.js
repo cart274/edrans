@@ -1,19 +1,19 @@
-model = require('./model');
+let model = require('./model');
 
 
-exports.getAlumnos = function(cb){
-    model.getAlumnos(cb);
+exports.getCarreras = function(cb){
+    model.getCarreras(cb);
 }
 
-exports.setAlumnos = function(data, cb){
-    model.setAlumnos(data, cb);
+exports.setCarrera = function(data, cb){
+    model.setCarrera(data, cb);
 }
 
-exports.deleteAlumno = function(data, cb){
-    model.deleteAlumno(data, cb);
+exports.deleteCarrera = function(data, cb){
+    model.deleteCarrera(data, cb);
 }
 
-exports.updateAlumno = function(data, cb){
-    model.updateAlumno(data, cb);
+exports.updateCarrera = function(data, cb){
+    model.updateCarrera(data, cb);
 }
 
