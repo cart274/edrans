@@ -13,8 +13,8 @@ router.get('/getAlumnos',(req,res,next)=>{
 	});
 });
 
-router.post('/setAlumno',(req,res,next)=>{
-	controller.setAlumno(req.body,function(error){
+router.post('/setAlumnos',(req,res,next)=>{
+	controller.setAlumnos(req.body,function(error){
 		res.send(JSON.stringify(error));
 	});
 });

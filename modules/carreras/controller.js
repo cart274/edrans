@@ -1,12 +1,12 @@
-let model = require('./model');
+model = require('./model');
 
 
 exports.getAlumnos = function(cb){
     model.getAlumnos(cb);
 }
 
-exports.setAlumno = function(data, cb){
-    model.setAlumno(data, cb);
+exports.setAlumnos = function(data, cb){
+    model.setAlumnos(data, cb);
 }
 
 exports.deleteAlumno = function(data, cb){

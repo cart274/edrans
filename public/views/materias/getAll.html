@@ -1,21 +1,21 @@
-<div ng-controller="alumnosCtrl">
+<div ng-controller="materiasCtrl">
     <div class="form-group">
-        <input type="text" class="form-control" placeholder="Buscar" ng-model="searchAlumnos">
+        <input type="text" class="form-control" placeholder="Buscar" ng-model="searchMaterias">
     </div>
     <div class="text-right">
-        <button class="btn btn-primary mb-3" ng-click="alumnosDetails()">Inscribir alumno</button>
+        <button class="btn btn-primary mb-3" ng-click="materiasDetails()">Agregar materia</button>
     </div>
     <table class="table">
         <thead>
             <tr>
                 <th scope="col">#</th>
-                <th scope="col">Alumno</th>
+                <th scope="col">Materia</th>
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="alumno in alumnos | filter:searchAlumnos"  ng-click="alumnosDetails(alumno)">
-                <td>{{$index}}</td>
-                <td>{{alumno.Name}}</td>
+            <tr ng-repeat="materia in materias | filter:searchMaterias"  ng-click="materiasDetails(materia)">
+                <td>{{$index + 1}}</td>
+                <td>{{materia.nombre}}</td>
             </tr>
         </tbody>
     </table>

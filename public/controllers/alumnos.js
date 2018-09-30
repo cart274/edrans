@@ -1,13 +1,11 @@
 app.controller('alumnosCtrl', function($scope,$uibModal) {
     $scope.alumnos = [];
-    console.log($uibModal);
     
     var getAlumnos = function(){
         fetch('http://localhost:8080/alumnos/getAlumnos', {
             method: 'GET'
             }).then(res => res.json())
             .then(res => {$scope.alumnos = res;
-                console.log(res);
                 $scope.$apply(); });
     }
     getAlumnos();
@@ -56,7 +54,7 @@ app.controller('alumnosDetailsCtrl', function($scope, $uibModalInstance, alumno)
 
     var saveNew = function(){
         data = $scope.alumnoDetail ;
-        fetch('http://localhost:8080/alumnos/setAlumnos', {
+        fetch('http://localhost:8080/alumnos/setAlumno', {
                 method: 'POST',
                 body: JSON.stringify(data), 
                 headers:{

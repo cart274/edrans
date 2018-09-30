@@ -1,15 +1,15 @@
 mongoose = require("mongoose");
-let Schema = mongoose.Schema;
+var Schema = mongoose.Schema;
 mongoose.connect("mongodb://localhost/alumnos");
 
-let alumnosSchemaJSON = {
+var alumnosSchemaJSON = {
     nombre:String,
     fNacimiento:Date,
     domicilio:String
 };
 
-let alumnos_schema = new Schema(alumnosSchemaJSON);
-let Alumnos = mongoose.model("Alumnos",alumnos_schema);
+var alumnos_schema = new Schema(alumnosSchemaJSON);
+var Alumnos = mongoose.model("Alumnos",alumnos_schema);
 
 exports.getAlumnos = function(cb){
     Alumnos.find(function(error,data){
@@ -17,8 +17,8 @@ exports.getAlumnos = function(cb){
     });
 }
 
-exports.setAlumno = function(data, cb){
-    let alumnos = new Alumnos({'nombre':data.nombre, 'fNacimiento':data.fNacimiento,
+exports.setAlumnos = function(data, cb){
+    var alumnos = new Alumnos({'nombre':data.nombre, 'fNacimiento':data.fNacimiento,
         'domicilio':data.domicilio});
     alumnos.save(cb);
 }
