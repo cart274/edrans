@@ -1,7 +1,7 @@
 const express = require('express'),
 app = express(),
 bodyParser = require('body-parser');
-students = require('./modules/students/index.js');
+students = require('./modules/students/router.js');
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({'extended':true}));
