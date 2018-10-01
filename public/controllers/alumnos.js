@@ -6,6 +6,7 @@ app.controller('alumnosCtrl', function($scope,$uibModal) {
             method: 'GET'
             }).then(res => res.json())
             .then(res => {$scope.alumnos = res;
+                console.log(res);
                 $scope.$apply(); });
     }
     getAlumnos();
@@ -37,12 +38,21 @@ app.controller('alumnosDetailsCtrl', function($scope, $uibModalInstance, alumno)
     if(alumno){
         var newDate = new Date(alumno.fNacimiento);
         $scope.alumnoDetail = {'nombre':alumno.nombre,'domicilio':alumno.domicilio,
-        'fNacimiento':newDate,'_id':alumno._id};
+        'fNacimiento':newDate,'carrera':alumno.carreraId,'_id':alumno._id};
     }
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
 
+    var getCarreras = function(){
+        fetch('http://localhost:8080/carreras/getCarreras', {
+            method: 'GET'
+            }).then(res => res.json())
+            .then(res => {$scope.carreras = res;
+                $scope.$apply(); });
+    }
+    getCarreras();
+    
     $scope.save = function () {
         if($scope.alumnoDetail._id){
             updateAlumno();
@@ -54,6 +64,7 @@ app.controller('alumnosDetailsCtrl', function($scope, $uibModalInstance, alumno)
 
     var saveNew = function(){
         data = $scope.alumnoDetail ;
+        console.log(data);
         fetch('http://localhost:8080/alumnos/setAlumno', {
                 method: 'POST',
                 body: JSON.stringify(data), 

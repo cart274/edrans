@@ -6,7 +6,6 @@ app.controller('carrerasCtrl', function($scope,$uibModal) {
             method: 'GET'
             }).then(res => res.json())
             .then(res => {$scope.carreras = res;
-                console.log(res);
                 $scope.$apply(); });
     }
     getCarreras();
@@ -53,7 +52,6 @@ app.controller('carrerasDetailsCtrl', function($scope, $uibModalInstance, carrer
 
     var saveNew = function(){
         data = $scope.carreraDetail;
-        console.log(data);
         fetch('http://localhost:8080/carreras/setCarrera', {
                 method: 'POST',
                 body: JSON.stringify(data), 

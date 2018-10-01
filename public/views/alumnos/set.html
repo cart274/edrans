@@ -16,6 +16,12 @@
                 <label for="nombre">Domicilio</label>
                 <input type="text" class="form-control" placeholder="Domicilio" ng-model="alumnoDetail.domicilio" required>
             </div>
+            <div class="form-group" ng-show="carreras.length > 0">
+                <label for="nombre">Carrera</label>
+                <select class="form-control" ng-model="alumnoDetail.carrera">
+                    <option ng-repeat="carrera in carreras" value="{{carrera._id}}">{{carrera.nombre}}</option>
+                </select>
+            </div>
         </form>
     </div>
 </div>

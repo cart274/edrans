@@ -1,6 +1,6 @@
-mongoose = require("mongoose");
+let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
-mongoose.connect("mongodb://localhost/carreras");
+mongoose.connect("mongodb://localhost/carreras", { useNewUrlParser: true });
 
 let carrerasSchemaJSON = {
     nombre:String

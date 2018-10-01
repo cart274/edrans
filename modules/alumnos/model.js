@@ -1,11 +1,12 @@
-mongoose = require("mongoose");
+let mongoose = require("mongoose");
 let Schema = mongoose.Schema;
-mongoose.connect("mongodb://localhost/alumnos");
+mongoose.connect("mongodb://localhost/alumnos", { useNewUrlParser: true });
 
 let alumnosSchemaJSON = {
     nombre:String,
     fNacimiento:Date,
-    domicilio:String
+    domicilio:String,
+    carreraId:String,
 };
 
 let alumnos_schema = new Schema(alumnosSchemaJSON);
@@ -19,8 +20,10 @@ exports.getAlumnos = function(cb){
 
 exports.setAlumno = function(data, cb){
     let alumnos = new Alumnos({'nombre':data.nombre, 'fNacimiento':data.fNacimiento,
-        'domicilio':data.domicilio});
-    alumnos.save(cb);
+        'domicilio':data.domicilio,'carreraId':data.carrera});
+    alumnos.save(function(error){
+        cb(error);
+    });
 }
 
 exports.deleteAlumno = function(data, cb){
@@ -31,7 +34,7 @@ exports.deleteAlumno = function(data, cb){
 
 exports.updateAlumno = function(data, cb){
     Alumnos.updateOne({'_id':data._id},{'nombre':data.nombre, 'fNacimiento':data.fNacimiento,
-    'domicilio':data.domicilio},function(error){
+    'domicilio':data.domicilio,'carreraId':data.carrera},function(error){
         cb(error);
     })
 }

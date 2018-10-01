@@ -53,6 +53,7 @@ app.controller('materiasDetailsCtrl', function($scope, $uibModalInstance, materi
 
     var saveNew = function(){
         data = $scope.materiaDetail;
+        console.log(data);
         fetch('http://localhost:8080/materias/setMateria', {
                 method: 'POST',
                 body: JSON.stringify(data), 
