@@ -17,3 +17,6 @@ exports.updateAlumno = function(data, cb){
     model.updateAlumno(data, cb);
 }
 
+exports.updateAlumnoMateria = function(data, cb){
+    model.updateAlumnoMateria(data, cb);
+}

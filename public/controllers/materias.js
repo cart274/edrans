@@ -1,18 +1,17 @@
 app.controller('materiasCtrl', function($scope,$uibModal) {
     $scope.materias = [];
     
-    var getMaterias = function(){
+    let getMaterias = function(){
         fetch('http://localhost:8080/materias/getMaterias', {
             method: 'GET'
             }).then(res => res.json())
             .then(res => {$scope.materias = res;
-                console.log(res);
                 $scope.$apply(); });
     }
     getMaterias();
 
     $scope.materiasDetails = function (materia){
-        var modalInstance = $uibModal.open({
+        let modalInstance = $uibModal.open({
             animation: false,
             ariaLabelledBy: 'modal-title',
             ariaDescribedBy: 'modal-body',
@@ -51,9 +50,8 @@ app.controller('materiasDetailsCtrl', function($scope, $uibModalInstance, materi
         }
     }
 
-    var saveNew = function(){
+    let saveNew = function(){
         data = $scope.materiaDetail;
-        console.log(data);
         fetch('http://localhost:8080/materias/setMateria', {
                 method: 'POST',
                 body: JSON.stringify(data), 
@@ -71,7 +69,7 @@ app.controller('materiasDetailsCtrl', function($scope, $uibModalInstance, materi
             });
     }
 
-    var updateMateria = function(){
+    let updateMateria = function(){
         data = $scope.materiaDetail ;
         fetch('http://localhost:8080/materias/updateMateria', {
                 method: 'PUT',

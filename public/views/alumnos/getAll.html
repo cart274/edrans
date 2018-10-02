@@ -13,9 +13,10 @@
             </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="alumno in alumnos | filter:searchAlumnos"  ng-click="alumnosDetails(alumno)">
-                <td>{{$index + 1}}</td>
-                <td>{{alumno.nombre}}</td>
+            <tr ng-repeat="alumno in alumnos | filter:searchAlumnos">
+                <td  ng-click="alumnosDetails(alumno)">{{$index + 1}}</td>
+                <td  ng-click="alumnosDetails(alumno)">{{alumno.nombre}}</td>
+                <td><button ng-click="alumnosMateriasDetails(alumno)" class="btn btn-secondary">Inscribir materia</button></td>
             </tr>
         </tbody>
     </table>

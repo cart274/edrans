@@ -7,6 +7,7 @@ let alumnosSchemaJSON = {
     fNacimiento:Date,
     domicilio:String,
     carreraId:String,
+    materias:Array,
 };
 
 let alumnos_schema = new Schema(alumnosSchemaJSON);
@@ -35,6 +36,12 @@ exports.deleteAlumno = function(data, cb){
 exports.updateAlumno = function(data, cb){
     Alumnos.updateOne({'_id':data._id},{'nombre':data.nombre, 'fNacimiento':data.fNacimiento,
     'domicilio':data.domicilio,'carreraId':data.carrera},function(error){
+        cb(error);
+    })
+}
+
+exports.updateAlumnoMateria = function(data, cb){
+    Alumnos.updateOne({'_id':data._id},{'materias':data.materias},function(error){
         cb(error);
     })
 }

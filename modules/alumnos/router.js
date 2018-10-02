@@ -31,4 +31,10 @@ router.put('/updateAlumno',(req,res,next)=>{
 	});
 });
 
+router.put('/updateAlumnoMateria',(req,res,next)=>{
+	controller.updateAlumnoMateria(req.body,function(error){
+		res.send(JSON.stringify(error));
+	});
+});
+
 module.exports = router;

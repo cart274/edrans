@@ -1,0 +1,45 @@
+<div class="modal-header">
+		<h3 class="modal-title">Materias de {{alumnoDetail.nombre}}</h3>
+</div>	
+<div class="modal-body">
+    <div class="modal-body">
+        <form name="myForm" novalidate>
+            <div class="form-group" ng-show="materias.length > 0">
+                <label for="nombre">Materias</label>
+                <div class="input-group">
+                    <select class="form-control" ng-model="materiaSelected">
+                        <option ng-repeat="materia in materias" ng-hide="materia.enabled" ng-value="materia">{{materia.nombre}}</option>
+                    </select>
+                    <button class="btn btn-secondary" ng-click="materiaSelected.enabled = true">Agregar materia</button>
+                </div>
+            </div>
+        </form>
+        <table class="table" ng-show="materias.length > 0">
+            <thead>
+                <tr>
+                    <th scope="col">Materia</th>
+                    <th scope="col">Status</th>
+                    <th scope="col">Calificación</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="materia in materias" ng-show="materia.enabled">
+                    <td>{{materia.nombre}}</td>
+                    <td>
+                        <select class="form-control" ng-model="materia.status">
+                            <option value="0" selected>Sin cursar</option>
+                            <option value="1">Cursada</option>
+                        </select>
+                    </td>
+                    <td><input ng-show="materia.status > 0" class="form-control" ng-model="materia.calificacion" type="number"/></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="modal-footer">
+	<button class="btn btn-primary" ng-click="save()" ng-show="myForm.$valid" translate>Guardar</button>
+	<button class="btn btn-danger" ng-click="delete()" ng-show="alumnoDetail._id" translate>Borrar</button>
+	<button class="btn btn-warning" ng-click="cancel()" translate>Cancelar</button>
+</div>

@@ -71,7 +71,7 @@ app.controller('carrerasDetailsCtrl', function($scope, $uibModalInstance, carrer
                     $scope.error = res;
                 }
                 else{
-                    $uibModalInstance.close();
+                    $uibModalInstance.close("close");
                 }                
             });
     }
@@ -91,7 +91,7 @@ app.controller('carrerasDetailsCtrl', function($scope, $uibModalInstance, carrer
                     $scope.error = res;
                 }
                 else{
-                    $uibModalInstance.close();
+                    $uibModalInstance.close("close");
                 }                
             });
     }
@@ -110,7 +110,7 @@ app.controller('carrerasDetailsCtrl', function($scope, $uibModalInstance, carrer
                     $scope.error = res;
                 }
                 else{
-                    $uibModalInstance.close();
+                    $uibModalInstance.close("close");
                 }                
             });
     }
@@ -126,12 +126,14 @@ app.controller('carrerasDetailsCtrl', function($scope, $uibModalInstance, carrer
     getMaterias();
 
     let setMateriasIncluidas = function(){
-        $scope.materias.forEach((item)=>{
-            $scope.carreraDetail.materias.forEach((subItem)=>{
-                if(item._id == subItem._id){
-                    item.enabled = true;
-                }
+        if($scope.materias && $scope.carreraDetail.materias){
+            $scope.materias.forEach((item)=>{
+                $scope.carreraDetail.materias.forEach((subItem)=>{
+                    if(item._id == subItem._id){
+                        item.enabled = true;
+                    }
+                })
             })
-        })
+        }
     }
 });
