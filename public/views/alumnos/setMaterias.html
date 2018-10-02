@@ -20,6 +20,7 @@
                     <th scope="col">Materia</th>
                     <th scope="col">Status</th>
                     <th scope="col">Calificación</th>
+                    <th scope="col"></th>
                 </tr>
             </thead>
             <tbody>
@@ -32,6 +33,7 @@
                         </select>
                     </td>
                     <td><input ng-show="materia.status > 0" class="form-control" ng-model="materia.calificacion" type="number"/></td>
+                    <td><button class="btn btn-danger" ng-click="materia.enabled = false">Remover</button></td>
                 </tr>
             </tbody>
         </table>
@@ -40,6 +42,5 @@
 
 <div class="modal-footer">
 	<button class="btn btn-primary" ng-click="save()" ng-show="myForm.$valid" translate>Guardar</button>
-	<button class="btn btn-danger" ng-click="delete()" ng-show="alumnoDetail._id" translate>Borrar</button>
 	<button class="btn btn-warning" ng-click="cancel()" translate>Cancelar</button>
 </div>

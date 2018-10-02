@@ -10,12 +10,15 @@
             <tr>
                 <th scope="col">#</th>
                 <th scope="col">Alumno</th>
+                <th></th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
             <tr ng-repeat="alumno in alumnos | filter:searchAlumnos">
                 <td  ng-click="alumnosDetails(alumno)">{{$index + 1}}</td>
                 <td  ng-click="alumnosDetails(alumno)">{{alumno.nombre}}</td>
+                <td><button ng-click="alumnosDetails(alumno)" class="btn btn-primary">Editar</button></td>
                 <td><button ng-click="alumnosMateriasDetails(alumno)" class="btn btn-secondary">Inscribir materia</button></td>
             </tr>
         </tbody>

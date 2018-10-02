@@ -31,4 +31,16 @@ router.put('/updateCarrera',(req,res,next)=>{
 	});
 });
 
+router.post('/getMateriasInCarrera',(req,res,next)=>{
+	console.log('router',req.body);
+	controller.getMateriasInCarrera(req.body,function(error,data){
+		if(error){
+			res.send(JSON.stringify(error));
+		}
+		else{
+			res.send(JSON.stringify(data));
+		}
+	});
+});
+
 module.exports = router;

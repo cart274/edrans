@@ -16,7 +16,6 @@ exports.getMaterias = function(cb){
 }
 
 exports.setMateria = function(data, cb){
-    console.log(data.nombre);
     let materias = new Materias({'nombre':data.nombre});
     materias.save(function(error){
         cb(error);

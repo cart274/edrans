@@ -37,3 +37,10 @@ exports.updateCarrera = function(data, cb){
         cb(error);
     })
 }
+
+exports.getMateriasInCarrera = function(data,cb){
+    console.log(data);
+    Carreras.findOne({'_id':data._id},function(error,data){
+        cb(error,data)
+    });
+}

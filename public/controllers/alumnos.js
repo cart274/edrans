@@ -144,7 +144,7 @@ app.controller('alumnosMateriasDetailsCtrl', function($scope, $uibModalInstance,
     if(alumno){
         var newDate = new Date(alumno.fNacimiento);
         $scope.alumnoDetail = {'nombre':alumno.nombre,'materias':alumno.materias,
-        '_id':alumno._id};
+        '_id':alumno._id,'carreraId':alumno.carreraId};
     }
 
     $scope.cancel = function () {
@@ -155,13 +155,41 @@ app.controller('alumnosMateriasDetailsCtrl', function($scope, $uibModalInstance,
         fetch('http://localhost:8080/materias/getMaterias', {
             method: 'GET'
             }).then(res => res.json())
-            .then(res => {$scope.materias = res;
-                setMateriasInscritas();
-                $scope.$apply(); });
+            .then(res => {
+                getMateriasInCarrera(res);
+            });
     }
     getMaterias();
 
-    let setMateriasInscritas = function(){
+    let getMateriasInCarrera = function(materiasDisponibles){
+        var data = {'_id':$scope.alumnoDetail.carreraId};
+        fetch('http://localhost:8080/carreras/getMateriasInCarrera', {
+            method: 'POST',
+            body: JSON.stringify(data), 
+            headers:{
+            'Content-Type': 'application/json'
+            }
+        }).then(res => res.json())
+        .then(res=>{
+            if(res){
+                setMateriasInscritas(res.materias,materiasDisponibles);
+            }         
+        });
+
+    }
+    
+
+    let setMateriasInscritas = function(materiasId,materiasDisponibles){
+        $scope.materias = [];
+        if(materiasId && materiasDisponibles){
+            materiasDisponibles.forEach((item)=>{
+                materiasId.forEach((subItem)=>{
+                    if(item._id == subItem._id){
+                        $scope.materias.push(item);
+                    }
+                })
+            })
+        }
         if($scope.alumnoDetail.materias && $scope.materias){
             $scope.materias.forEach((item)=>{
                 $scope.alumnoDetail.materias.forEach((subItem)=>{
@@ -173,6 +201,7 @@ app.controller('alumnosMateriasDetailsCtrl', function($scope, $uibModalInstance,
                 })
             })
         }
+        $scope.$apply();   
     }
 
     $scope.save = function(){

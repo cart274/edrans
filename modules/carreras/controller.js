@@ -17,3 +17,6 @@ exports.updateCarrera = function(data, cb){
     model.updateCarrera(data, cb);
 }
 
+exports.getMateriasInCarrera = function(data, cb){
+    model.getMateriasInCarrera(data, cb);
+}
