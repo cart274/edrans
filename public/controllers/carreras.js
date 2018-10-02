@@ -35,23 +35,30 @@ app.controller('carrerasCtrl', function($scope,$uibModal) {
 app.controller('carrerasDetailsCtrl', function($scope, $uibModalInstance, carrera) {
     $scope.carreraDetail = {};
     if(carrera){
-        $scope.carreraDetail = {'nombre':carrera.nombre,'_id':carrera._id};
+        $scope.carreraDetail = {'nombre':carrera.nombre,'_id':carrera._id,'materias':carrera.materias};
     }
     $scope.cancel = function () {
         $uibModalInstance.dismiss('cancel');
     };
 
     $scope.save = function () {
+        let materiasIncluidas = [];
+        $scope.materias.forEach((item)=>{
+            if(item.enabled){
+                materiasIncluidas.push({'_id':item._id});
+            }
+        })
         if($scope.carreraDetail._id){
-            updateCarrera();
+            updateCarrera(materiasIncluidas);
         }
         else{
-            saveNew();
+            saveNew(materiasIncluidas);
         }
     }
 
-    var saveNew = function(){
+    var saveNew = function(materiasIncluidas){
         data = $scope.carreraDetail;
+        data.materias = materiasIncluidas;
         fetch('http://localhost:8080/carreras/setCarrera', {
                 method: 'POST',
                 body: JSON.stringify(data), 
@@ -69,8 +76,9 @@ app.controller('carrerasDetailsCtrl', function($scope, $uibModalInstance, carrer
             });
     }
 
-    var updateCarrera = function(){
+    var updateCarrera = function(materiasIncluidas){
         data = $scope.carreraDetail ;
+        data.materias = materiasIncluidas;
         fetch('http://localhost:8080/carreras/updateCarrera', {
                 method: 'PUT',
                 body: JSON.stringify(data), 
@@ -107,4 +115,23 @@ app.controller('carrerasDetailsCtrl', function($scope, $uibModalInstance, carrer
             });
     }
 
+    let getMaterias = function(){
+        fetch('http://localhost:8080/materias/getMaterias', {
+            method: 'GET'
+            }).then(res => res.json())
+            .then(res => {$scope.materias = res;
+                setMateriasIncluidas();
+                $scope.$apply(); });
+    }
+    getMaterias();
+
+    let setMateriasIncluidas = function(){
+        $scope.materias.forEach((item)=>{
+            $scope.carreraDetail.materias.forEach((subItem)=>{
+                if(item._id == subItem._id){
+                    item.enabled = true;
+                }
+            })
+        })
+    }
 });

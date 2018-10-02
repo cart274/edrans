@@ -3,7 +3,8 @@ let Schema = mongoose.Schema;
 mongoose.connect("mongodb://localhost/carreras", { useNewUrlParser: true });
 
 let carrerasSchemaJSON = {
-    nombre:String
+    nombre:String,
+    materias:Array,
 };
 
 let carreras_schema = new Schema(carrerasSchemaJSON);
@@ -17,8 +18,11 @@ exports.getCarreras = function(cb){
 
 exports.setCarrera = function(data, cb){
     let carreras = new Carreras({'nombre':data.nombre, 'fNacimiento':data.fNacimiento,
-        'domicilio':data.domicilio});
-    carreras.save(cb);
+        'domicilio':data.domicilio,'materias':data.materias});
+    carreras.save(function(error){
+        console.log(error);
+        cb(error);
+    });
 }
 
 exports.deleteCarrera = function(data, cb){
@@ -29,7 +33,7 @@ exports.deleteCarrera = function(data, cb){
 
 exports.updateCarrera = function(data, cb){
     Carreras.updateOne({'_id':data._id},{'nombre':data.nombre, 'fNacimiento':data.fNacimiento,
-    'domicilio':data.domicilio},function(error){
+    'domicilio':data.domicilio,'materias':data.materias},function(error){
         cb(error);
     })
 }

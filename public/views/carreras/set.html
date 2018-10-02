@@ -9,6 +9,42 @@
                 <input type="text" class="form-control" placeholder="Nombre de la carrera" ng-model="carreraDetail.nombre" required>
             </div>
         </form>
+
+
+        <div class="row">
+            <div class="col-sm-6 col-md-6">
+                <div class="panel panel-success" >
+                    <div class="panel-heading" translate>Materias de la carrera</div>
+                    <div class="panel-body">
+                        <input type="text" class="form-control" placeholder="Buscar en materias incluidas" title="Tooltip Help" ng-model="searchIncludedMaterias" data-toggle="tooltip">
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr ng-repeat="materia in materias | filter:searchIncludedMaterias" ng-click="materia.enabled = !materia.enabled" 
+                            ng-show="materia.enabled == true" class="selected">
+                                <td>{{materia.nombre}} </td>
+                            </tr>
+                        <tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="col-sm-6 col-md-6">
+                <div class="panel panel-danger" >
+                    <div class="panel-heading" translate>Materias excluidas</div>
+                    <div class="panel-body">
+                        <input type="text" class="form-control" placeholder="Buscar en materias excluidas" title="Tooltip Help" ng-model="searchExcludedMaterias" data-toggle="tooltip">
+                    </div>
+                    <table class="table">
+                        <tbody>
+                            <tr ng-repeat="materia in materias | filter:searchExcludedMaterias"  ng-click="materia.enabled = !materia.enabled"
+                            ng-hide="materia.enabled == true" class="selected">
+                                <td>{{materia.nombre}} </td>
+                            </tr>
+                        <tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 </div>
 <div class="modal-footer">
